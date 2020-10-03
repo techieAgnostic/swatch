@@ -2,8 +2,8 @@
   description = "swatch beat internet time";
   inputs.nixpkgs.url = github:Nixos/nixpkgs/nixos-20.03;
   outputs = { self, nixpkgs }: {
-    overlay = final: prev: with nixpkgs; {
-      swatch = swatch;
+    overlay = final: prev: {
+      swatch = with final; self.defaultPackage.x86_64-linux;
     };
     defaultPackage.x86_64-linux =
       with import nixpkgs { system = "x86_64-linux"; };
