@@ -3,7 +3,7 @@
   
   inputs.nixpkgs.url = github:Nixos/nixpkgs/nixos-20.03;
   
-  outputs = { self, nixpkgs }:
+  outputs = { self, nix, nixpkgs }:
     let
       supportedSystems = [ "x86_64-linux" "i686-linux" "aarch64-linux" ];
       forAllSystems =
