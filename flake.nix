@@ -3,14 +3,13 @@
   
   inputs.nixpkgs.url = github:Nixos/nixpkgs/nixos-20.03;
   
-  outputs = { self, nixpkgs }: {
+  outputs = { self, nixpkgs }:
     let
       supportedSystems = [ "x86_64-linux" "i686-linux" "aarch64-linux" ];
       forAllSystems =
         f: nixpkgs.lib.genAttrs supportedSystems (system: f system);
       version = "1.0.0";
     in {
-
       overlay = final: prev: {
         swatch = with final; let nix = final.nix; in stdenv.mkDerivation {
           name = "swatch-${version}";
