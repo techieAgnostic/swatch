@@ -3,7 +3,7 @@
   
   inputs.nixpkgs.url = github:Nixos/nixpkgs/nixos-20.03;
   
-  outputs = { self, nix, nixpkgs }:
+  outputs = { self, nixpkgs }:
     let
       supportedSystems = [ "x86_64-linux" "i686-linux" "aarch64-linux" ];
       forAllSystems =
@@ -11,7 +11,7 @@
       version = "1.0.0";
     in {
       overlay = final: prev: {
-        swatch = with final; let nix = final.nix; in stdenv.mkDerivation {
+        swatch = with final; in stdenv.mkDerivation {
           name = "swatch-${version}";
           buildInputs = [ gawk utillinux ];
           src = self;
@@ -36,7 +36,7 @@
       defaultPackage =
         forAllSystems (system: (import nixpkgs {
           inherit system;
-          overlays = [ self.overlay nix.overlay ];
+          overlays = [ self.overlay ];
         }).swatch);
   };
 }
