@@ -11,7 +11,7 @@
       version = "1.0.0";
     in {
       overlay = final: prev: {
-        swatch = with final; in stdenv.mkDerivation {
+        swatch = with final; stdenv.mkDerivation {
           name = "swatch-${version}";
           buildInputs = [ gawk utillinux ];
           src = self;
