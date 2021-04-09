@@ -28,7 +28,7 @@
             '';
             homepage = https://github.com/techieAgnostic/swatch;
             maintainers = [ "Shaun Kerr - s@p7.co.nz" ];
-            platforms = stdenv.lib.platforms.all;
+            platforms = lib.platforms.all;
           };
         };
       };
